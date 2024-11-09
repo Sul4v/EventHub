@@ -7,14 +7,7 @@ import { useEffect, useState } from 'react'
 
 const EventListings = ({ isHome = false, eventsArray = []}) => {
 
-  const [events, setEvents] = useState(eventsArray);
-
-  // Update the state if the eventsArray prop changes
-  useEffect(() => {
-    setEvents(eventsArray);
-  }, [eventsArray]); // Only re-run if eventsArray changes
-
-  const eventListings = isHome ? events.slice(0, 3) : events
+  const eventListings = isHome ? eventsArray.slice(0, 3) : eventsArray
 
   return (
     <section className="bg-blue-50 px-4 py-10">

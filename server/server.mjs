@@ -15,7 +15,11 @@ app.use(cors({
 }))
 const PORT = process.env.PORT ?? 3000
 
-app.get('/api', async (req, res) => {
+app.get('/', (req, res) => {
+  res.send("Server Homepage")
+})
+
+app.get('/fetch-data', async (req, res) => {
   try {
     const events = await Event.find();  // Fetches all events from MongoDB
     res.status(200).json(events);       // Sends the events data as JSON
@@ -30,9 +34,6 @@ app.get('/login', (req, res) => {
 
 app.post('/event', async (req, res) => {
   try {
-    console.log("000000000")
-    console.log(req.body.title)
-    console.log("111111111")
     // Create new event using data from request body
     const newEvent = new Event({
       name: req.body.name,
@@ -43,8 +44,6 @@ app.post('/event', async (req, res) => {
       contactEmail: req.body.contactEmail,
       contactPhone: req.body.contactPhone
     });
-
-    console.log(newEvent)
 
     // Save to database
     const savedEvent = await newEvent.save();
@@ -57,7 +56,6 @@ app.post('/event', async (req, res) => {
     });
 
   } catch (err) {
-    console.log("afdsasfdds")
     console.error("Error adding event to database:", err);
     // Send error response
     res.status(500).json({

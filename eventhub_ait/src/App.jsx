@@ -12,15 +12,15 @@ import LoginPage from './pages/LoginPage'
 import RegistrationPage from './pages/RegistrationPage'
 import PostEventPage from './pages/PostEventPage'
 
-const backendURL = "http://localhost:4000/"
+const SERVER_URL = import.meta.env.VITE_SERVER_URL
 
 const App = () => {
 
   // Add new event
   const postEvent = async (newEvent) => { 
     try{
-      console.log(newEvent)
-      const res = await axios.post("http://localhost:4000/event", newEvent );
+      // const res = await axios.post(`http://localhost:3000/event`, newEvent );
+      const res = await axios.post(`${SERVER_URL}/event`, newEvent );
       console.log('Event created successfully:', res.data);
     }
     catch (error) {
@@ -33,7 +33,8 @@ const App = () => {
 
   const fetchAPI = async () => {
     try {
-      const response = await axios.get("http://localhost:4000/api");
+      // const response = await axios.get(`http://localhost:3000/fetch-data`);
+      const response = await axios.get(`${SERVER_URL}/fetch-data`);
     
       setEventArray(response.data);
     } catch (error) {
