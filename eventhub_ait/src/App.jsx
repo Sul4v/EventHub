@@ -14,6 +14,9 @@ import PostEventPage from './pages/PostEventPage'
 
 const API = import.meta.env.VITE_BACKEND_URL;
 
+console.log("'afdsadsfjlkasdjflajsdflkjas")
+console.log(API)
+
 
 const App = () => {
 
@@ -21,7 +24,7 @@ const App = () => {
   const postEvent = async (newEvent) => { 
     try{
       // const res = await axios.post(`http://localhost:4000/event`, newEvent );
-      const res = await axios.post(`${API}/event`, newEvent );
+      const res = await axios.post(`http://linserv1.cims.nyu.edu:12207/event`, newEvent );
       console.log('Event created successfully:', res.data);
     }
     catch (error) {
@@ -30,14 +33,18 @@ const App = () => {
   }
 
   // Fetch Events
-  const [eventArray, setEventArray] = useState([])
+  const [eventsArray, setEventsArray] = useState([])
 
   const fetchAPI = async () => {
     try {
-      // const response = await axios.get(`http://localhost:4000/fetch-data`);
-      const response = await axios.get(`${API}/fetch-data`);
+      // const response = await axios.get(`http://localhost:8080/fetch-data`);
+      const response = await axios.get(`http://linserv1.cims.nyu.edu:12207/fetch-data`, {
+        headers: {
+          'Content-Type': 'application/json',
+        }
+      });
     
-      setEventArray(response.data);
+      setEventsArray(response.data);
     } catch (error) {
       console.error("Error fetching data: ", error);
     }
@@ -52,7 +59,7 @@ const App = () => {
       <Route path='/' element = {<MainLayout />} >
         <Route index element={<HomePage/>} />   
         <Route path='/profile' element={<ProfilePage/>} /> 
-        <Route path='/events' element={<EventsPage eventsArray={eventArray}/>} /> 
+        <Route path='/events' element={<EventsPage eventsArray={eventsArray}/>} /> 
         <Route path='/login' element={<LoginPage/>} /> 
         <Route path='/registration' element={<RegistrationPage/>} /> 
         <Route path='/post-event' element={ <PostEventPage postEventSubmit={postEvent} /> } /> 
