@@ -35,7 +35,6 @@ const App = () => {
   const fetchAPI = async () => {
     try {
       // const response = await axios.get(`http://localhost:4000/fetch-data`);
-      console.log(SERVER_URL)
       const response = await axios.get(`${API}/fetch-data`);
     
       setEventArray(response.data);
