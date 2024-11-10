@@ -130,16 +130,14 @@ An Example Join Record:
 
 * (2 points) Make the Webpage responsive
   * will make sure that this webpage will have a responsive UI, i.e. it will have adapt to the device screen size. (mobile phone, tablet, computer)
-* (3 points) Geolocation and Mapping with Google Maps API
-    * will use GoogleMaps API for the events' location. I'll assign 4 points for this.
-* (5 points) react.js
-    * will use react.js as the frontend framework; it's a challenging library to learn, so I've assigned it 5 points
+* (2 points) TailwindCSS
+    * will use TailwindCSS to design the pages in the webapp
+* (6 points) react.js
+    * will use react.js as the frontend framework; it's a challenging library to learn, so I've assigned it 6 points
 
 
 
-## [Link to Initial Main Project File](src/app.mjs)  
-
-
+## [Link to Initial Main Project File](eventhub_ait/src/App.jsx)  
 
 ## Annotations / References Used
 
