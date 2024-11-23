@@ -11,9 +11,9 @@ http://linserv1.cims.nyu.edu:12208
 
 URL for form 1 (from previous milestone) 
 ---
-http://localhost:5173/login
+http://linserv1.cims.nyu.edu:12208/login
 
-http://localhost:5173/registration
+http://linserv1.cims.nyu.edu:12208/registration
 
 Special Instructions for Form 1
 ---
@@ -21,7 +21,7 @@ You have to register a user first, and then after you log out, you can use the l
 
 URL for form 2 (for current milestone)
 ---
-http://localhost:5173/post-event
+http://linserv1.cims.nyu.edu:12208/post-event
 
 Special Instructions for Form 2
 ---
