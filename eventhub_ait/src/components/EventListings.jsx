@@ -17,7 +17,7 @@ const EventListings = ({ isHome = false, eventsArray = []}) => {
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           { eventListings.map((event) => (
-            <EventListing  event={ event }/>
+            <EventListing key={event._id || event.id} event={ event }/>
           ))}
         </div>
       </div>

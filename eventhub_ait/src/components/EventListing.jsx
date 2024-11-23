@@ -1,51 +1,67 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { useState } from 'react'
-import { FaMapMarker } from 'react-icons/fa'
+import { 
+  FaMapMarkerAlt, 
+  FaEnvelope, 
+  FaPhone, 
+  FaUser 
+} from 'react-icons/fa';
+
 
 const EventListing = ({event}) => {
+  const navigate = useNavigate();
 
-  // state itself, name of the function that'll change its state
-  const [showFullDescription, setShowFullDescription] = useState(false);
-
-  let description = event.description
-
-  // making the description shorter and adding a button to show full description
-  if (!showFullDescription) {
-    description = description.substring(0, 90) + "..."
-  }
+  const handleClick = () => {
+    navigate(`/event/${event._id}`);
+  };
 
   return (
-    <div className="bg-white rounded-xl shadow-md relative">
-      <div className="p-4">
-        <div className="mb-6">
-          <div className="text-gray-600 my-2">{event.type}</div>
-          <h3 className="text-xl font-bold">{event.title}</h3>
-        </div>
+    <div onClick={handleClick} className="bg-white rounded-xl shadow-md hover:shadow-lg transition-shadow cursor-pointer">
+      <div className="p-6">
+        {/* Event Type Badge */}
+        <span className="inline-block px-3 py-1 text-sm bg-indigo-100 text-indigo-800 rounded-full mb-3">
+          {event.type}
+        </span>
 
-        <div className="mb-5">
-          {description}
-        </div>
+        {/* Event Name */}
+        <h3 className="text-xl font-bold text-gray-900 mb-3">
+          {event.name}
+        </h3>
 
-        <button onClick={ () => setShowFullDescription((prevState) => !prevState)} className="text-indigo-500 mb-5 hover:text-indigo-600">
-          { showFullDescription ? 'Less' : 'More'}
-        </button>
+        {/* Brief Description */}
+        <p className="text-gray-600 mb-4">
+          {event.description.substring(0, 100)}...
+        </p>
 
-        <h3 className="text-indigo-500 mb-2">{event.salary} / Year</h3>
 
-        <div className="border border-gray-100 mb-5"></div>
-
-        <div className="flex flex-col lg:flex-row justify-between mb-4">
-          <div className="text-orange-700 mb-3">
-            <FaMapMarker className="inline text-lg mb-1 mr-1" />
-            { event.location }
+        {/* Contact Info Section */}
+        <div className="border-t border-gray-200 mt-4 pt-4">
+          <div className="space-y-2 mb-4">
+            {/* Contact Name */}
+            <div className="flex items-center text-gray-600">
+              <FaUser className="w-4 h-4 mr-2" />
+              <span>{event.contactName}</span>
+            </div>
+            
+            {/* Location */}
+            <div className="flex items-center text-gray-600">
+              <FaMapMarkerAlt className="w-4 h-4 mr-2" />
+              <span>{event.location}</span>
+            </div>
+            
+            {/* Email */}
+            <div className="flex items-center text-gray-600">
+              <FaEnvelope className="w-4 h-4 mr-2" />
+              <span>{event.contactEmail}</span>
+            </div>
+            
+            {/* Phone */}
+            <div className="flex items-center text-gray-600">
+              <FaPhone className="w-4 h-4 mr-2" />
+              <span>{event.contactPhone}</span>
+            </div>
           </div>
-          <Link
-            to  ={`/events/${event.id}`}
-            className="h-[36px] bg-indigo-500 hover:bg-indigo-600 text-white px-4 py-2 rounded-lg text-center text-sm"
-          >
-            Read More
-          </Link>
         </div>
       </div>
     </div>

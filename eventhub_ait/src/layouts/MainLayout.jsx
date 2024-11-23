@@ -2,10 +2,10 @@ import React from 'react'
 import { Outlet } from 'react-router-dom'
 import Navbar from '../components/Navbar'
 
-const MainLayout = () => {
+const MainLayout = ({ onLogout, user }) => {
   return (
     <>
-      <Navbar />
+      <Navbar user={user} onLogout={onLogout}/>
       <Outlet /> {/*whatever route you're on will come from this outlet */}
     </>
   )
