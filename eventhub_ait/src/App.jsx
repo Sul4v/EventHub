@@ -13,7 +13,7 @@ import RegistrationPage from './pages/RegistrationPage'
 import PostEventPage from './pages/PostEventPage'
 import EventDetails from './pages/EventDetails'
 
-const API = import.meta.env.VITE_BACKEND_URL;
+const API_URL = import.meta.env.VITE_BACKEND_URL || 'http://localhost:8080';
 
 // Protected Route wrapper component
 const ProtectedRoute = ({ children }) => {
@@ -50,12 +50,12 @@ const App = () => {
   const handlePostEvent = async (newEvent) => { 
     try{
       const userId = localStorage.getItem('userId')
-      const res = await axios.post(`http://localhost:8080/event`, newEvent, {
+      const res = await axios.post(`${API_URL}/event`, newEvent, {
         headers: {
           'User-Id': userId
         }
       });
-      // const res = await axios.post(`http://linserv1.cims.nyu.edu:12207/event`, newEvent );
+
       console.log('Event created successfully:', res.data);
       // Refresh events after posting
       fetchEvents()
@@ -78,16 +78,11 @@ const App = () => {
         console.log('No userId found');
         return;
       }
-      const response = await axios.get(`http://localhost:8080/fetch-data`, {
+      const response = await axios.get(`${API_URL}/fetch-data`, {
         headers: {
           'User-Id': userId
         }
       });
-      // const response = await axios.get(`http://linserv1.cims.nyu.edu:12207/fetch-data`, {
-      //   headers: {
-      //     'Content-Type': 'application/json',
-      //   }
-      // });
     
       setEvents(response.data);
     } catch (error) {
