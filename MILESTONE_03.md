@@ -7,7 +7,7 @@ https://github.com/nyu-csci-ua-0467-001-002-fall-2024/final-project-Sul4v/
 
 URL for deployed site 
 ---
-(TODO: add url for your dpeloyed site; should be in this format http://linserv1.cims.nyu.edu:12208)
+http://linserv1.cims.nyu.edu:12208
 
 URL for form 1 (from previous milestone) 
 ---
