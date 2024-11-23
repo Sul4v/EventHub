@@ -11,21 +11,22 @@ http://linserv1.cims.nyu.edu:12208
 
 URL for form 1 (from previous milestone) 
 ---
+
+http://linserv1.cims.nyu.edu:12208/post-event
+
+Special Instructions for Form 1
+---
+You post an event through this form, and that event is reflected on the Events page.
+
+URL for form 2 (for current milestone)
+---
 http://linserv1.cims.nyu.edu:12208/login
 
 http://linserv1.cims.nyu.edu:12208/registration
 
-Special Instructions for Form 1
----
-You have to register a user first, and then after you log out, you can use the login form to use the same credential to log in.
-
-URL for form 2 (for current milestone)
----
-http://linserv1.cims.nyu.edu:12208/post-event
-
 Special Instructions for Form 2
 ---
-YOu post an event through this form, and that event is reflected on the Events page.
+You have to register a user first, and then after you log out, you can use the login form to use the same credential to log in.
 
 URL(s) to github repository with commits that show progress on research
 --- 
