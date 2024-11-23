@@ -5,6 +5,9 @@ import { Link, useNavigate } from 'react-router-dom'
 // Form component
 const LoginPage = ({ onLogin }) => {
 
+  // Get API URL from environment variable
+  const API_URL = import.meta.env.VITE_BACKEND_URL;
+
   // State for form data with email and password fields
   const [formData, setFormData] = useState({
     email: '',
@@ -33,7 +36,7 @@ const LoginPage = ({ onLogin }) => {
 
     try {
       // Make API call to login endpoint
-      const response = await axios.post('http://localhost:8080/login', formData);
+      const response = await axios.post(`${API_URL}/login`, formData);
 
       if (response.data.user) {
         onLogin(response.data.user);

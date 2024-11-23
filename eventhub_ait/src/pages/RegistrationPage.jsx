@@ -4,6 +4,10 @@ import { Link, useNavigate } from 'react-router-dom'
 import axios from 'axios';
 
 const RegistrationPage = ({ onRegister }) => {
+
+  // Get API URL from environment variable
+  const API_URL = import.meta.env.VITE_BACKEND_URL;
+
   // Hook for programmatic navigation
   const navigate = useNavigate();
 
@@ -34,7 +38,7 @@ const RegistrationPage = ({ onRegister }) => {
 
     try {
       // Make API call to register endpoint
-      const response = await axios.post('http://localhost:8080/register', formData);
+      const response = await axios.post(`${API_URL}/register`, formData);
       
       if (response.data.user) {
         onRegister(response.data.user)

@@ -11,6 +11,10 @@ import {
 } from 'react-icons/fa';
 
 const EventDetails = () => {
+
+  // Get API URL from environment variable
+  const API_URL = import.meta.env.VITE_BACKEND_URL;
+
   const { id } = useParams();
   const navigate = useNavigate();
   const [event, setEvent] = useState(null);
@@ -21,7 +25,7 @@ const EventDetails = () => {
   useEffect(() => {
     const fetchEvent = async () => {
       try {
-        const response = await axios.get(`http://localhost:8080/event/${id}`, {
+        const response = await axios.get(`${API_URL}/event/${id}`, {
           headers: {
             'User-Id': localStorage.getItem('userId')
           }

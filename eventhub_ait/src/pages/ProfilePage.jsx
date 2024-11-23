@@ -2,6 +2,10 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
 const ProfilePage = () => {
+
+  // Get API URL from environment variable
+  const API_URL = import.meta.env.VITE_BACKEND_URL;
+
   const [userEvents, setUserEvents] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -13,7 +17,7 @@ const ProfilePage = () => {
   useEffect(() => {
     const fetchUserProfile = async () => {
       try {
-        const response = await axios.get('http://localhost:8080/profile', {
+        const response = await axios.get(`${API_URL}/profile`, {
           headers: {
             'User-Id': userId
           }
