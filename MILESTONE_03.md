@@ -29,8 +29,14 @@ YOu post an event through this form, and that event is reflected on the Events p
 
 URL(s) to github repository with commits that show progress on research
 --- 
+https://github.com/nyu-csci-ua-0467-001-002-fall-2024/final-project-Sul4v/blob/6c5f4c558405d88df1377317af3a7889e656aa1a/eventhub_ait/src/App.jsx#L1
 
+As you can see, I'm using React for my whole project.
+
+https://github.com/nyu-csci-ua-0467-001-002-fall-2024/final-project-Sul4v/blob/6c5f4c558405d88df1377317af3a7889e656aa1a/eventhub_ait/src/components/EventListings.jsx#L15
+
+this is just one of the places where I've used tailwind-css to style the page.
 
 References 
 ---
-(TODO: if applicable, links to annotated lines of code in github repository that were based off of tutorials / articles / sample projects)
+N/A
