@@ -70,7 +70,7 @@ An Example Event:
 
 ## Site map 
 
-![Site Map](images/site_map.jpg)
+![Site Map](images/sitemap.jpeg)
 
 * Home (/)
   - Landing page introcuing the app, with links to login or sign up
@@ -130,8 +130,9 @@ An Example Event:
 
 * (2 points) TailwindCSS
     * will use TailwindCSS to design the pages in the webapp
-* (6 points) react.js
-    * will use react.js as the frontend framework; it's a challenging library to learn, so I've assigned it 6 points
+    
+* (6 points) ReactJS
+    * will use ReactJS as the frontend framework
 
 
 

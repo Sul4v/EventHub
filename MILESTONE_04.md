@@ -47,19 +47,21 @@ Easy to register a user.
 
 First link to github line number(s) for constructor, HOF, etc.
 ---
-(TODO: add link to line number(s) here) 
+[map](https://github.com/nyu-csci-ua-0467-001-002-fall-2024/final-project-Sul4v/blob/5f6b57e59e9997f4c782a59520064f8a2dcb3974/eventhub_ait/src/components/EventListings.jsx#L16)
 
 Second link to github line number(s) for constructor, HOF, etc.
 ---
-(TODO: add link to line number(s) here) 
+[filter](https://github.com/nyu-csci-ua-0467-001-002-fall-2024/final-project-Sul4v/blob/5f6b57e59e9997f4c782a59520064f8a2dcb3974/server/server.mjs#L228) 
 
 Short description for links above
 ---
-(TODO: describe what each link above is, one line each... for example: myFunction is a hof that retrieves json from a url, map is used to transform the Array of Person objects into an Array of strings that represents names)
+For the first one, I've used map to display same component for different array elements. 
+
+For the second one, I've used the "filter" function to filter one user/participant from a list of users/participants.
 
 Link to github line number(s) for schemas (db.js or models folder)
 ---
-(TODO: add link to schemas)
+[db.js](https://github.com/nyu-csci-ua-0467-001-002-fall-2024/final-project-Sul4v/blob/5f6b57e59e9997f4c782a59520064f8a2dcb3974/server/db.mjs)
 
 Description of research topics above with points
 ---
@@ -71,7 +73,11 @@ Description of research topics above with points
 
 Links to github line number(s) for research topics described above (one link per line)
 ---
-(TODO: add link to github line number(s), one per line for research topics ... for example, if using auth/passport, link to auth.js or where bulk of auth code is)
+[Eslint](https://github.com/nyu-csci-ua-0467-001-002-fall-2024/final-project-Sul4v/blob/5f6b57e59e9997f4c782a59520064f8a2dcb3974/eventhub_ait/eslint.config.js)
+
+[One example of TailWindCSS](https://github.com/nyu-csci-ua-0467-001-002-fall-2024/final-project-Sul4v/blob/5f6b57e59e9997f4c782a59520064f8a2dcb3974/eventhub_ait/src/pages/LoginPage.jsx#L86)
+
+[ReactJS](https://github.com/nyu-csci-ua-0467-001-002-fall-2024/final-project-Sul4v/blob/5f6b57e59e9997f4c782a59520064f8a2dcb3974/eventhub_ait/src/App.jsx)
 
 Optional project notes 
 --- 
