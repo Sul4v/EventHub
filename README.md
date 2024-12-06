@@ -139,5 +139,6 @@ An Example Event:
 ## [Link to Initial Main Project File](eventhub_ait/src/App.jsx)  
 
 ## Annotations / References Used
+N/A
 
-Nothing as of yet
+## Note to self: Since this is a VITE react project, you have to "build" it before uploading it to the server. And use the dist directory to run in the server.
