@@ -1,21 +1,20 @@
-import React from 'react'
-import {useState} from 'react'
-import { useNavigate } from 'react-router-dom'
+import { React, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const PostEventPage = ({ postEventSubmit }) => {
 
-  const [type, setType] = useState('Sports')
-  const [name, setName] = useState('')
-  const [description, setDescription] = useState('')
-  const [location, setLocation] = useState('')
-  const [contactName, setContactName] = useState('')
-  const [contactEmail, setContactEmail] = useState('')
-  const [contactPhone, setContactPhone] = useState('')
+  const [type, setType] = useState('Sports');
+  const [name, setName] = useState('');
+  const [description, setDescription] = useState('');
+  const [location, setLocation] = useState('');
+  const [contactName, setContactName] = useState('');
+  const [contactEmail, setContactEmail] = useState('');
+  const [contactPhone, setContactPhone] = useState('');
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const submitForm = (e) => {
-    e.preventDefault()
+    e.preventDefault();
 
     const newEvent = {
       name,
@@ -25,13 +24,13 @@ const PostEventPage = ({ postEventSubmit }) => {
       contactName,
       contactEmail,
       contactPhone
-    }
+    };
 
 
-    postEventSubmit(newEvent)
+    postEventSubmit(newEvent);
 
-    return navigate('/events')
-  }
+    return navigate('/events');
+  };
 
   return (
     <section className="bg-indigo-50">
@@ -44,7 +43,7 @@ const PostEventPage = ({ postEventSubmit }) => {
 
             <div className="mb-4">
               <label htmlFor="type" className="block text-gray-700 font-bold mb-2"
-                >Event Type
+              >Event Type
               </label>
               <select
                 id="type"
@@ -63,8 +62,8 @@ const PostEventPage = ({ postEventSubmit }) => {
 
             <div className="mb-4">
               <label className="block text-gray-700 font-bold mb-2"
-                >Event Name
-                </label>
+              >Event Name
+              </label>
               <input
                 type="text"
                 id="title"
@@ -80,8 +79,8 @@ const PostEventPage = ({ postEventSubmit }) => {
               <label
                 htmlFor="description"
                 className="block text-gray-700 font-bold mb-2"
-                >Description
-                </label>
+              >Description
+              </label>
               <textarea
                 id="description"
                 name="description"
@@ -113,8 +112,8 @@ const PostEventPage = ({ postEventSubmit }) => {
 
             <div className="mb-4">
               <label htmlFor="company" className="block text-gray-700 font-bold mb-2"
-                >Contact Person Name
-                </label>
+              >Contact Person Name
+              </label>
               <input
                 type="text"
                 id="company"
@@ -131,7 +130,7 @@ const PostEventPage = ({ postEventSubmit }) => {
               <label
                 htmlFor="contact_email"
                 className="block text-gray-700 font-bold mb-2"
-                >Contact Email</label>
+              >Contact Email</label>
               <input
                 type="email"
                 id="contact_email"
@@ -147,13 +146,13 @@ const PostEventPage = ({ postEventSubmit }) => {
               <label
                 htmlFor="contact_phone"
                 className="block text-gray-700 font-bold mb-2"
-                >Contact Phone</label>
+              >Contact Phone</label>
               <input
                 type="tel"
                 id="contact_phone"
                 name="contact_phone"
                 className="border rounded w-full py-2 px-3"
-                placeholder="Phone number (optional)"
+                placeholder="Phone number"
                 required
                 value={contactPhone}
                 onChange={(e) => setContactPhone(e.target.value)}
@@ -172,7 +171,7 @@ const PostEventPage = ({ postEventSubmit }) => {
         </div>
       </div>
     </section>
-  )
-}
+  );
+};
 
-export default PostEventPage
+export default PostEventPage;

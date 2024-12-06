@@ -1,6 +1,5 @@
-import React from 'react'
-import { useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { React, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 const RegistrationPage = ({ onRegister }) => {
@@ -41,7 +40,7 @@ const RegistrationPage = ({ onRegister }) => {
       const response = await axios.post(`${API_URL}/register`, formData);
       
       if (response.data.user) {
-        onRegister(response.data.user)
+        onRegister(response.data.user);
         // Store the user data
         localStorage.setItem('userId', response.data.user.id);
         localStorage.setItem('user', JSON.stringify(response.data.user));
@@ -52,21 +51,21 @@ const RegistrationPage = ({ onRegister }) => {
         // Redirect to home page after successful registration
         navigate('/', { replace: true }); // replace: true prevents back navigation
       } else {
-        setError('Registration failed - user data not received')
+        setError('Registration failed - user data not received');
       }
     } catch (error) {
       // Enhanced error handling
       if (error.response) {
         // The server responded with an error
         switch (error.response.status) {
-          case 400:
-            setError(error.response.data.message || 'Username or email already exists');
-            break;
-          case 500:
-            setError('Server error. Please try again later');
-            break;
-          default:
-            setError(error.response.data?.message || 'Registration failed');
+        case 400:
+          setError(error.response.data.message || 'Username or email already exists');
+          break;
+        case 500:
+          setError('Server error. Please try again later');
+          break;
+        default:
+          setError(error.response.data?.message || 'Registration failed');
         }
       } else if (error.request) {
         // The request was made but no response received

@@ -15,14 +15,14 @@ The application will store the following entities: Users, Events, and Join Recor
 
 * Users can create and join multiple events.
 * Events can have multiple participants (Users).
-* Join Records link Users and Events to track user participation.
 
 An Example User:
 
 ```javascript
 {
   username: "janedoe",
-  hash: // a password hash,
+  email: "janedoe@gmail.com",
+  password: // a password hash,
   createdEvents: // an array of references to Event documents,
   joinedEvents: // an array of references to Join Record documents
 }
@@ -32,22 +32,15 @@ An Example Event:
 
 ```javascript
 {
-  organizer: // a reference to a User object,
-  title: "Tech Conference 2024",
+  type: "Conference"
+  name: "Tech Conference 2024",
   description: "A two-day event covering the latest in tech.",
-  date: "2024-11-01",
   location: "New York City, NY",
-  attendees: // an array of references to Join Record documents,
-  createdAt: // timestamp
-}
-```
-
-An Example Join Record:
-```javascript
-{
-  user: // a reference to a User object,
-  event: // a reference to an Event object,
-  joinedAt: // timestamp
+  contactName: // Organizer's name,
+  contactEmail: // Organizer's email,
+  contactPhone: // Organizer's phone,
+  createdBy: // UserSchema of the creator
+  participants: // Array of joined UserSchema
 }
 ```
 
@@ -56,21 +49,24 @@ An Example Join Record:
 
 ## Wireframes
 
-/ - redirect to /events page
-
-/events/create - page for creating a new event
+/ - Homepage
 
 /events - page for viewing all available events
 
-/events/
+/post-event - page for posting a new event
+
+/event/:id
 - page for viewing details of a specific event
 
-/profile - user profile page showing user profile and upcoming joined events
+/profile - user profile page showing user profile and joined events or created events
 
 
-![Events page and Profile page](images/image1.jpg)
-![Login and Registration page](images/image2.jpg)
-![Event Detail page](images/image3.jpg)
+![Events page](images/eventsPage.png)
+![Home page](images/home.png)
+![Profile page](images/profile.png)
+![Post Event page](images/postEvent.png)
+![Login page](images/login.png)
+![Registration page](images/register.png)
 
 ## Site map 
 
@@ -79,7 +75,7 @@ An Example Join Record:
 * Home (/)
   - Landing page introcuing the app, with links to login or sign up
 
-* Sign Up (/signup)
+* Sign Up (/registration)
   - Page for new users to register
   - Links to login page if the user already has an account
 
@@ -91,31 +87,33 @@ An Example Join Record:
   - Main user page after login
   - Shows a feed of all upcoming events with options to view details or join.
   - Sub-pages from Dashboard
-    + Create Event (/events/create)
-      - Form for users to create a new event
+    
     + Event Details (/events/:id)
       - Page displaying specific event details
       - Option to join the event if not already joined
 
+* Post Event (/post-event)
+  - Form for users to post a new event
+
 * Profile (/profile)
-  - Shows the user's joined events and a history of past events
+  - Shows the user's joined events and created events
 
 
 ### Site Map Flow Example
 
-  * Home (/)
-      ↓ Links to Sign Up or Login
   * Sign Up (/signup)
-      ↓ After sign-up, redirects to Dashboard
+      ↓ After sign-up, redirects to Home Page
   * Login (/login)
-      ↓ After login, redirects to Dashboard
+      ↓ After login, redirects to Home Page
+  * Home (/)
+      ↓ Links to Events, Post Event, or Profile pages
   * Events (/events)
       ↓ Access all events
       ↓ Links to Create Event and Event Details pages
   * Event Details (/events/:id)
-      ↓ Join event option (redirects back to Events page or Profile after joining)
+      - Join event option
   * Profile (/profile)
-      ↓ Shows joined events and links to settings if needed
+      ↓ Shows joined events and created events
 
 ## User Stories or Use Cases
 
@@ -124,12 +122,12 @@ An Example Join Record:
 3. as a user, I can create a new event
 4. as a user, I can view a list of all events
 5. as a user, I can join events
-6. as a user, I can view upcoming events I have joined on my profile page
+6. as a user, I can view the events I have joined or created on my profile page
 
 ## Research Topics
 
-* (2 points) Make the Webpage responsive
-  * will make sure that this webpage will have a responsive UI, i.e. it will have adapt to the device screen size. (mobile phone, tablet, computer)
+* (3 points) Vite with EsLint
+
 * (2 points) TailwindCSS
     * will use TailwindCSS to design the pages in the webapp
 * (6 points) react.js

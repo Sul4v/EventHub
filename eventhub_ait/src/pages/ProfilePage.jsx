@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import EventCard from '../components/EventCard';
 
 const ProfilePage = () => {
 
@@ -7,6 +8,7 @@ const ProfilePage = () => {
   const API_URL = import.meta.env.VITE_BACKEND_URL;
 
   const [userEvents, setUserEvents] = useState([]);
+  const [joinedEvents, setJoinedEvents] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -23,15 +25,16 @@ const ProfilePage = () => {
           }
         });
         setUserEvents(response.data.createdEvents || []);
+        setJoinedEvents(response.data.joinedEvents || []);
         setLoading(false);
       } catch (error) {
-        setError('Error fetching profile data');
+        setError('Error fetching profile data: ', error);
         setLoading(false);
       }
     };
 
     fetchUserProfile();
-  }, [userId]);
+  }, [userId, API_URL]);
 
   if (loading) {
     return (
@@ -75,10 +78,10 @@ const ProfilePage = () => {
           </div>
         </div>
 
-        {/* Events Section */}
-        <div className="bg-white rounded-lg shadow-md p-6">
-          <h3 className="text-xl font-semibold mb-4">Your Events</h3>
-          
+        {/* Created Events Section */}
+        <div className="bg-white rounded-lg shadow-md p-6 mb-8">
+          <h3 className="text-xl font-semibold mb-4">Events You've Created</h3>
+        
           {userEvents.length === 0 ? (
             <div className="text-center py-8">
               <p className="text-gray-500">You haven't created any events yet.</p>
@@ -86,50 +89,44 @@ const ProfilePage = () => {
                 href="/post-event" 
                 className="mt-4 inline-block bg-indigo-600 text-white px-4 py-2 rounded-md hover:bg-indigo-700"
               >
-                Create Your First Event
+              Create Your First Event
               </a>
             </div>
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {userEvents.map((event) => (
-                <div 
-                  key={event._id} 
-                  className="border rounded-lg p-4 hover:shadow-md transition-shadow"
-                >
-                  <div className="flex justify-between items-start">
-                    <div>
-                      <span className="inline-block px-2 py-1 text-sm bg-indigo-100 text-indigo-800 rounded-full">
-                        {event.type}
-                      </span>
-                      <h4 className="text-lg font-semibold mt-2">{event.name}</h4>
-                      <p className="text-gray-600 text-sm mt-1">{event.description}</p>
-                    </div>
-                  </div>
-                  
-                  <div className="mt-4 text-sm text-gray-600">
-                    <div className="flex items-center">
-                      <svg className="h-4 w-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                      </svg>
-                      {event.location}
-                    </div>
-                    
-                    <div className="flex items-center mt-2">
-                      <svg className="h-4 w-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                      </svg>
-                      {event.contactEmail}
-                    </div>
-                  </div>
-                </div>
+                <EventCard key={event._id} event={event} type="created" />
               ))}
             </div>
           )}
         </div>
+
+        {/* Joined Events Section */}
+        <div className="bg-white rounded-lg shadow-md p-6">
+          <h3 className="text-xl font-semibold mb-4">Events You've Joined</h3>
+        
+          {joinedEvents.length === 0 ? (
+            <div className="text-center py-8">
+              <p className="text-gray-500">You haven't joined any events yet.</p>
+              <a 
+                href="/events" 
+                className="mt-4 inline-block bg-indigo-600 text-white px-4 py-2 rounded-md hover:bg-indigo-700"
+              >
+              Browse Events
+              </a>
+            </div>
+          ) : (
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {joinedEvents.map((event) => (
+                <EventCard key={event._id} event={event} type="joined" />
+              ))}
+            </div>
+          )}
+        </div>
+
       </div>
     </div>
   );
-}
+};
 
-export default ProfilePage
+export default ProfilePage;

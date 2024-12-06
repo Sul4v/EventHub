@@ -1,14 +1,14 @@
-import React from 'react'
-import { NavLink, useNavigate } from 'react-router-dom'
+import React from 'react';
+import { NavLink, useNavigate } from 'react-router-dom';
 
 const Navbar = ({ user, onLogout }) => {
   const navigate = useNavigate();
-  const linkClass = ({ isActive }) => isActive ? "text-white bg-black hover:bg-gray-900 hover:text-white rounded-md px-3 py-2" : "text-white hover:bg-gray-900 hover:text-white rounded-md px-3 py-2"
+  const linkClass = ({ isActive }) => isActive ? 'text-white bg-black hover:bg-gray-900 hover:text-white rounded-md px-3 py-2' : 'text-white hover:bg-gray-900 hover:text-white rounded-md px-3 py-2';
 
   const handleLogout = () => {
     onLogout();
-    navigate('/login')
-  }
+    navigate('/login');
+  };
   return (
     <nav className="bg-indigo-700 border-b border-indigo-500">
       <div className="mx-auto  px-2 sm:px-6 lg:px-8">
@@ -19,7 +19,7 @@ const Navbar = ({ user, onLogout }) => {
             {/* Logo */}
             <NavLink className="flex flex-shrink-0 items-center mr-4" to="/">
               <span className="hidden md:block text-white text-2xl font-bold ml-2"
-                >EventHub
+              >EventHub
               </span>
             </NavLink>
 
@@ -29,7 +29,7 @@ const Navbar = ({ user, onLogout }) => {
                 <NavLink
                   to="/events"
                   className={ linkClass }
-                  >Events
+                >Events
                 </NavLink>
 
                 {user ? (
@@ -65,7 +65,7 @@ const Navbar = ({ user, onLogout }) => {
         </div>
       </div>
     </nav>
-  )
-}
+  );
+};
 
-export default Navbar
+export default Navbar;

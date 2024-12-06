@@ -164,11 +164,97 @@ app.get('/event/:id', auth, async (req, res) => {
   }
 });
 
+// Join event 
+app.post('/event/:id/join', auth, async (req, res) => {
+  try {
+    const event = await Event.findById(req.params.id);
+    if (!event) {
+      return res.status(404).json({ message: 'Event not found' });
+    }
+
+    // Check if user is the creator
+    if (event.createdBy.toString() === req.user._id.toString()) {
+      return res.status(400).json({ message: 'Cannot join your own event' });
+    }
+
+    // Initialize participants array if it doesn't exist
+    if (!event.participants) {
+      event.participants = [];
+    }
+
+    // Check if user already joined
+    if (event.participants.includes(req.user._id)) {
+      return res.status(400).json({ message: 'Already joined this event' });
+    }
+
+    // Add user to participants
+    event.participants.push(req.user._id);
+    await event.save();
+
+    // Add event to user's joinedEvents
+    await User.findByIdAndUpdate(req.user._id, {
+      $addToSet: { joinedEvents: event._id }
+    });
+
+    res.json({
+      success: true,
+      message: 'Successfully joined event',
+      event: {
+        ...event.toObject(),
+        participants: event.participants
+      }
+    });
+
+  } catch (error) {
+    res.status(500).json({ 
+      success: false, 
+      message: 'Error joining event',
+      error: error.message 
+    });
+  }
+});
+
+// Leave event
+app.post('/event/:id/leave', auth, async (req, res) => {
+  try {
+    const event = await Event.findById(req.params.id);
+
+    if (!event) {
+      return res.status(404).json({ message: 'Event not found' });
+    }
+    
+    // Remove user from participants array
+    if (event.participants) {
+      event.participants = event.participants.filter(
+        participantId => participantId.toString() !== req.user._id.toString()
+      );
+    }
+    await event.save();
+
+    // Remove event from user's joinedEvents
+    await User.findByIdAndUpdate(req.user._id, {
+      $pull: { joinedEvents: event._id }
+    });
+
+    res.json({ 
+      success: true, 
+      message: 'Successfully left event' 
+    });
+  } catch (error) {
+    console.error('Error in leave endpoint:', error);
+    res.status(500).json({ 
+      message: 'Error leaving event', 
+      error: error.message 
+    });
+  }
+});
+
 // User profile route
 app.get('/profile', auth, async (req, res) => {
   try {
     const user = await User.findById(req.user._id)
       .populate('createdEvents')
+      .populate('joinedEvents')
       .select('-password');
     res.json(user);
   } catch (error) {
@@ -180,58 +266,5 @@ app.get('/', (req, res) => {
   res.send("Server Homepage")
 })
 
-
-
 app.listen(PORT, () => console.log(`Server started in port ${PORT}`))
 
-
-
-// import './config.mjs'
-// import express from 'express';
-// import cors from 'cors'
-// import mongoose from 'mongoose'
-// import sanitize from 'mongo-sanitize'
-
-// const port = process.env.PORT || 4000
-
-// const app = express()
-
-
-// const corsOptions = {
-//   origin: ["http://localhost:5173"] // only accepting request from our front-end server
-// }
-
-// app.use(cors(corsOptions))
-
-// // const dbOptions = {useNewUrlParser:true, useUnifiedTopology:true}
-// // mongoose.connect(process.env.DSN, dbOptions)
-// // .then(() => console.log('DB Connected!'))
-// // .catch(err => console.log(err))
-
-
-// // Get paths
-
-// app.post('/post-event', async (req, res) => {
-//   const newEvent = new Event({
-//     type: sanitize(req.body.type),
-//     name: sanitize(req.body.name),
-//     description: sanitize(req.body.description),
-//     location: sanitize(req.body.location),
-//     contactName: sanitize(req.body.contactName),
-//     contactEmail: sanitize(req.body.contactEmail),
-//     contactPhone: sanitize(req.body.contactPhone),
-//   });
-//   try {
-//     await newEvent.save()
-//   } catch (err) {
-//     console.log("there has been an error" + err.message)
-//   }
-// })
-
-// app.get('/events', (req, res) => {
-//   res.json({fruits: ["apple", "orange"]})
-// })
-
-// app.listen(port, () => {
-//   console.log(`Server started on port ${port}`)
-// })

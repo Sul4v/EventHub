@@ -1,13 +1,10 @@
-import React from 'react'
-import events from '../jobs.json'
-import EventListing from './EventListing'
-import axios from 'axios'
-import { useEffect, useState } from 'react'
+import React from 'react';
+import EventListing from './EventListing';
 
 
-const EventListings = ({ isHome = false, eventsArray = []}) => {
+const EventListings = ({ isHome = false, eventsArray = [] }) => {
 
-  const eventListings = isHome ? eventsArray.slice(0, 3) : eventsArray
+  const eventListings = isHome ? eventsArray.slice(0, 3) : eventsArray;
 
   return (
     <section className="bg-blue-50 px-4 py-10">
@@ -22,7 +19,7 @@ const EventListings = ({ isHome = false, eventsArray = []}) => {
         </div>
       </div>
     </section>
-  )
-}
+  );
+};
 
-export default EventListings
+export default EventListings;

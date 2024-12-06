@@ -1,6 +1,6 @@
-import React from 'react'
+import React from 'react';
 
-const Hero = ({ title="Join some Events around you", subtitle="Discover nice people around you throug these events" }) => {
+const Hero = ({ title='Join some Events around you', subtitle='Discover nice people around you throug these events' }) => {
   return (
     <section className="bg-indigo-700 py-20 mb-4">
       <div
@@ -18,7 +18,7 @@ const Hero = ({ title="Join some Events around you", subtitle="Discover nice peo
         </div>
       </div>
     </section>
-  )
-}
+  );
+};
 
-export default Hero
+export default Hero;

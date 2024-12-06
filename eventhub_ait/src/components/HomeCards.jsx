@@ -1,6 +1,6 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
-import Card from './Card'
+import React from 'react';
+import { Link } from 'react-router-dom';
+import Card from './Card';
 
 const HomeCards = () => {
   return (
@@ -10,15 +10,15 @@ const HomeCards = () => {
           
           <Card>
             <h2 className="text-2xl font-bold">For Participants</h2>
-              <p className="mt-2 mb-4">
+            <p className="mt-2 mb-4">
                 Browse for events nearby
-              </p>
-              <Link
-                to="/events"
-                className="inline-block bg-black text-white rounded-lg px-4 py-2 hover:bg-gray-700"
-              >
+            </p>
+            <Link
+              to="/events"
+              className="inline-block bg-black text-white rounded-lg px-4 py-2 hover:bg-gray-700"
+            >
                 Browse Events
-              </Link>
+            </Link>
           </Card>
 
           <Card bg='bg-indigo-100'>  
@@ -36,7 +36,7 @@ const HomeCards = () => {
         </div>
       </div>
     </section>
-  )
-}
+  );
+};
 
-export default HomeCards
+export default HomeCards;

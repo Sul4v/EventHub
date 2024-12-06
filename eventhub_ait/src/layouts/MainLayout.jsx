@@ -1,6 +1,6 @@
-import React from 'react'
-import { Outlet } from 'react-router-dom'
-import Navbar from '../components/Navbar'
+import React from 'react';
+import { Outlet } from 'react-router-dom';
+import Navbar from '../components/Navbar';
 
 const MainLayout = ({ onLogout, user }) => {
   return (
@@ -8,7 +8,7 @@ const MainLayout = ({ onLogout, user }) => {
       <Navbar user={user} onLogout={onLogout}/>
       <Outlet /> {/*whatever route you're on will come from this outlet */}
     </>
-  )
-}
+  );
+};
 
-export default MainLayout
+export default MainLayout;

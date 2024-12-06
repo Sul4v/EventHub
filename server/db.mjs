@@ -5,7 +5,6 @@ mongoose.connect(process.env.DSN)
   .then(() => console.log('Connected to MongoDB Atlas'))
   .catch(err => console.error('MongoDB connection error:', err));
 
-
 // User Schema
 const UserSchema = new mongoose.Schema({
   username: { 
@@ -25,6 +24,10 @@ const UserSchema = new mongoose.Schema({
   createdEvents: [{ 
     type: mongoose.Schema.Types.ObjectId, 
     ref: 'Event' 
+  }],
+  joinedEvents: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Event'
   }]
 }, { timestamps: true });
 
@@ -48,7 +51,11 @@ const EventSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId, 
     ref: 'User',
     required: true 
-  }
+  },
+  participants: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User'
+  }]
 }, { timestamps: true });
 
 export const User = mongoose.model('User', UserSchema);

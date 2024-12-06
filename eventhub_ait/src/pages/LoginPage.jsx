@@ -1,7 +1,7 @@
-import React from 'react'
-import axios from 'axios'
-import { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom'
+import { React, useState } from 'react';
+import axios from 'axios';
+import { Link, useNavigate } from 'react-router-dom';
+
 // Form component
 const LoginPage = ({ onLogin }) => {
 
@@ -58,17 +58,17 @@ const LoginPage = ({ onLogin }) => {
         // The request was made and the server responded with a status code
         // that falls out of the range of 2xx
         switch (error.response.status) {
-          case 401:
-            setError('Invalid email or password. Please try again.');
-            break;
-          case 404:
-            setError('Login service not available. Please try again later.');
-            break;
-          case 500:
-            setError('Server error. Please try again later.');
-            break;
-          default:
-            setError(error.response.data?.message || 'An error occurred during login.');
+        case 401:
+          setError('Invalid email or password. Please try again.');
+          break;
+        case 404:
+          setError('Login service not available. Please try again later.');
+          break;
+        case 500:
+          setError('Server error. Please try again later.');
+          break;
+        default:
+          setError(error.response.data?.message || 'An error occurred during login.');
         }
       } else if (error.request) {
         // The request was made but no response was received

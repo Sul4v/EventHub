@@ -1,17 +1,16 @@
-import React from 'react'
-import { Route, createBrowserRouter, createRoutesFromElements, RouterProvider, Navigate } from 'react-router-dom'
-import {useEffect, useState} from 'react'
-import axios from "axios"
+import { React, useEffect, useState } from 'react';
+import { Route, createBrowserRouter, createRoutesFromElements, RouterProvider, Navigate } from 'react-router-dom';
+import axios from 'axios';
 
-import HomePage from './pages/Homepage'
-import MainLayout from './layouts/MainLayout'
-import ProfilePage from './pages/ProfilePage'
-import NotFoundPage from './pages/NotFoundPage'
-import EventsPage from './pages/EventsPage'
-import LoginPage from './pages/LoginPage'
-import RegistrationPage from './pages/RegistrationPage'
-import PostEventPage from './pages/PostEventPage'
-import EventDetails from './pages/EventDetails'
+import HomePage from './pages/Homepage';
+import MainLayout from './layouts/MainLayout';
+import ProfilePage from './pages/ProfilePage';
+import NotFoundPage from './pages/NotFoundPage';
+import EventsPage from './pages/EventsPage';
+import LoginPage from './pages/LoginPage';
+import RegistrationPage from './pages/RegistrationPage';
+import PostEventPage from './pages/PostEventPage';
+import EventDetails from './pages/EventDetails';
 
 const API_URL = import.meta.env.VITE_BACKEND_URL || 'http://localhost:8080';
 
@@ -34,7 +33,7 @@ const App = () => {
   const [user, setUser] = useState(null);
   const [events, setEvents] = useState([]);
 
-  // NEW: Check authentication status on app load
+  // Check authentication status on app load
   useEffect(() => {
     const userId = localStorage.getItem('userId');
     const storedUser = localStorage.getItem('user');
@@ -43,31 +42,32 @@ const App = () => {
       setIsAuthenticated(true);
       setUser(JSON.parse(storedUser));
       axios.defaults.headers.common['User-Id'] = userId;
+      // Fetch events after setting auth state
+      fetchEvents();
     }
   }, []);
 
   // Add new event
   const handlePostEvent = async (newEvent) => { 
-    try{
-      const userId = localStorage.getItem('userId')
-      const res = await axios.post(`${API_URL}/event`, newEvent, {
+    try {
+      const userId = localStorage.getItem('userId');
+      await axios.post(`${API_URL}/event`, newEvent, {
         headers: {
           'User-Id': userId
         }
       });
 
-      console.log('Event created successfully:', res.data);
       // Refresh events after posting
-      fetchEvents()
-      return { success: true }
+      fetchEvents();
+      return { success: true };
     } catch (error) {
       console.error('Error creating event:', error);
       return {
         success: false,
         error: error.response?.data?.message || 'Failed to create event'
-      }
+      };
     }
-  }
+  };
 
   // Fetch Events
 
@@ -75,7 +75,7 @@ const App = () => {
     try {
       const userId = localStorage.getItem('userId');
       if (!userId) {
-        console.log('No userId found');
+        // No userId found
         return;
       }
       const response = await axios.get(`${API_URL}/fetch-data`, {
@@ -86,24 +86,25 @@ const App = () => {
     
       setEvents(response.data);
     } catch (error) {
-      console.error("Error fetching data: ", error);
+      console.error('Error fetching data: ', error);
       if (error.response?.status === 401) {
         // Handle unauthorized access
         setIsAuthenticated(false);
         setUser(null);
       }
     }
-  }
+  };
 
   // Auth handlers
   const handleLogin = (userData) => {
-    console.log('Logging in with:', userData); // Debug log
 
     localStorage.setItem('userId', userData.id);
     localStorage.setItem('user', JSON.stringify(userData));
     setIsAuthenticated(true);
     setUser(userData);
     axios.defaults.headers.common['User-Id'] = userData.id;
+    // Fetch events after login
+    fetchEvents();
   };
 
   const handleLogout = () => {
@@ -116,15 +117,16 @@ const App = () => {
   };
 
   useEffect(() => {
-    fetchEvents()
-  }, [])
+    fetchEvents();
+  }, []);
   
   const router = createBrowserRouter(
     createRoutesFromElements(
       <Route path='/' element = {<MainLayout onLogout={handleLogout} user={user}/>} >
-        <Route index element={<ProtectedRoute><HomePage/></ProtectedRoute>} />   
+        
+        <Route index element={<ProtectedRoute><HomePage eventsArray={events}/></ProtectedRoute>} />   
         <Route path='/profile' element={<ProtectedRoute><ProfilePage user={user}/></ProtectedRoute>} /> 
-        {/* <Route path='/events' element={<EventsPage eventsArray={eventsArray}/>} />  */}
+
         <Route path='/events' element={
           <ProtectedRoute>
             <EventsPage eventsArray={events} />
@@ -143,9 +145,9 @@ const App = () => {
         <Route path='*' element={<NotFoundPage/>} />
       </Route>
     )
-  )
+  );
 
-  return <RouterProvider router={router} />
-}
+  return <RouterProvider router={router} />;
+};
 
-export default App
+export default App;
