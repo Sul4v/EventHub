@@ -65,7 +65,6 @@ Link to github line number(s) for schemas (db.js or models folder)
 
 Description of research topics above with points
 ---
-(TODO: add description of research topics here, including point values for each, one per line... for example: 2 points - applied and modified "Clean Blog" Bootstrap theme)
 
 3 points - applied auto Eslint with Vite
 2 points - used TailWindCSS
