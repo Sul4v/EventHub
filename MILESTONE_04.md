@@ -80,6 +80,8 @@ Links to github line number(s) for research topics described above (one link per
 
 Optional project notes 
 --- 
+Gif of running eslint:
+![Eslint running](./images/eslint_working.gif)
 
 
 Attributions
