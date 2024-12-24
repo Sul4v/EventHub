@@ -44,8 +44,6 @@ An Example Event:
 }
 ```
 
-## [Link to Commented First Draft Schema](src/db.mjs) 
-
 
 ## Wireframes
 
@@ -124,16 +122,19 @@ An Example Event:
 5. as a user, I can join events
 6. as a user, I can view the events I have joined or created on my profile page
 
-## Research Topics
+## Technologies used
 
-* (3 points) Vite with EsLint
-
-* (2 points) TailwindCSS
-    * will use TailwindCSS to design the pages in the webapp
+* TailwindCSS
+    * used TailwindCSS to design the pages in the webapp
     
-* (6 points) ReactJS
-    * will use ReactJS as the frontend framework
+* ReactJS
+    * used ReactJS as the frontend framework
 
+* Express
+    * for server-side code
+
+* MongoDB 
+    * for database
 
 
 ## [Link to Initial Main Project File](eventhub_ait/src/App.jsx)  
